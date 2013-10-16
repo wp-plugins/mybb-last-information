@@ -1,0 +1,198 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mybblastinfo\n"
+"POT-Creation-Date: 2013-10-16 21:05-0800\n"
+"PO-Revision-Date: 2013-10-16 21:09-0800\n"
+"Last-Translator: \n"
+"Language-Team: Mostafa Shiraali <admin@pctricks.ir>\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: mybblastinfo.php:58 mybblastinfo.php:331 mybblastinfo.php:332
+msgid "Mybb Last Information"
+msgstr "آخرین اطلاعات انجمن ساز مای بی بی "
+
+#: mybblastinfo.php:58
+msgid "Mybb Info"
+msgstr "اطلاعات مای بی بی"
+
+#: mybblastinfo.php:64
+msgid "Mybb Last Information Options"
+msgstr ""
+"تنظیمات آخرین اطلاعات مای بی بی (ساخته شده توسط <a href=\"http://pctricks.ir"
+"\" target=\"_blamk\">Mostafa</a> ) "
+
+#: mybblastinfo.php:69
+msgid "Host of Mybb"
+msgstr "هاست مای بی بی"
+
+#: mybblastinfo.php:70
+msgid "Insert Mybb host .Default : localhost"
+msgstr "هاست خود را وارد نمایید (پیشفرض : localhost)"
+
+#: mybblastinfo.php:74
+msgid "Database name"
+msgstr "نام پایگاه داده"
+
+#: mybblastinfo.php:78
+msgid "Database Username"
+msgstr "نام کاربر پایگاه داده"
+
+#: mybblastinfo.php:82
+msgid "Database Password"
+msgstr "رمز عبور پایگاه داده"
+
+#: mybblastinfo.php:86
+msgid "Mybb Table Prefix"
+msgstr "پیشوند جدول های مای بی بی"
+
+#: mybblastinfo.php:91
+msgid "Items Number"
+msgstr "تعداد آیتم های اطلاعات"
+
+#: mybblastinfo.php:92
+msgid "Insert Number of Items"
+msgstr "تعداد آیتم های اطلاعات را وارد نمایید"
+
+#: mybblastinfo.php:97
+msgid "Post Title Characters"
+msgstr "کارکترهای عنوان ارسال"
+
+#: mybblastinfo.php:98
+msgid "Insert Number of Post Title Characters"
+msgstr "تعداد کارکتر عنوان مطالب را وارد کنید"
+
+#: mybblastinfo.php:102
+msgid "File Title Characters"
+msgstr "کارکتر های عنوان فایل"
+
+#: mybblastinfo.php:103
+msgid "Insert Number of File Title Characters"
+msgstr "تعداد کارکترهای نام فایل وارد کنید"
+
+#: mybblastinfo.php:107 mybblastinfo.php:217
+msgid "Forum Statistics"
+msgstr "آمار انجمن"
+
+#: mybblastinfo.php:108
+msgid "Do You Want Show Forum Statistics?"
+msgstr "آیا می خواهید آمار انجمن نمایش داده شوند؟"
+
+#: mybblastinfo.php:112
+msgid "Last Posts"
+msgstr "آخرین ارسال ها"
+
+#: mybblastinfo.php:113
+msgid "Do You Want Show Last Mybb Posts?"
+msgstr "آیا می خواهید آخرین ارسال های مای بی بی نمایش داده شود؟"
+
+#: mybblastinfo.php:117
+msgid "Last Users"
+msgstr "آخرین کاربران"
+
+#: mybblastinfo.php:118
+msgid "Do You Want Show Last Mybb Users?"
+msgstr "آیا می خواهید آخرین کاربران مای بی بی نمایش داده شود؟"
+
+#: mybblastinfo.php:122
+msgid "Most Viewed Posts"
+msgstr "پربازدیدترین ارسال ها"
+
+#: mybblastinfo.php:123
+msgid "Do You Want Show Most Viewed Posts?"
+msgstr "آیا می خواهید پربازدیدترین مطالب نمایش داده شود؟"
+
+#: mybblastinfo.php:128
+msgid "Most Popular Topics"
+msgstr "داغ ترین موضوعات"
+
+#: mybblastinfo.php:129
+msgid "Do You Want Show Most Popular Topic?"
+msgstr "آیا می خواهید داغ ترین موضوعات نمایش داده شوند؟"
+
+#: mybblastinfo.php:133 mybblastinfo.php:276
+msgid "Top Reputation"
+msgstr "بیشترین اعتبار"
+
+#: mybblastinfo.php:134
+msgid "Do You Want Show Top Reputation?"
+msgstr "آیا می خواهید کاربران با بالاترین اعتبار نمایش داده شود؟"
+
+#: mybblastinfo.php:138 mybblastinfo.php:285
+msgid "Top Files"
+msgstr "برترین فایل ها"
+
+#: mybblastinfo.php:139
+msgid "Do You Want Show Top Files?"
+msgstr "آیا می خواهید برترین فایل ها نمایش داده شوند؟"
+
+#: mybblastinfo.php:143
+msgid "Top Posters"
+msgstr "برترین ارسال کنندگان"
+
+#: mybblastinfo.php:144
+msgid "Do You Want Show Top Posters?"
+msgstr "آیا می خواهید برترین ارسال کنندگان نمایش داده شوند؟"
+
+#: mybblastinfo.php:148 mybblastinfo.php:294
+msgid "Top Reffer"
+msgstr "برترین معرف ها"
+
+#: mybblastinfo.php:149
+msgid "Do You Want Show Top Reffer?"
+msgstr "آیا می خواهید برترین معرف ها نمایش داده شوند؟"
+
+#: mybblastinfo.php:218
+msgid "Members"
+msgstr "کاربران"
+
+#: mybblastinfo.php:219
+msgid "Threads"
+msgstr "موضوعات"
+
+#: mybblastinfo.php:220
+msgid "Posts"
+msgstr "ارسال ها"
+
+#: mybblastinfo.php:221
+msgid "Banned Users"
+msgstr "کاربران محروم"
+
+#: mybblastinfo.php:222
+msgid "User Groups"
+msgstr "گروه های کاربری"
+
+#: mybblastinfo.php:223
+msgid "Forums"
+msgstr "انجمن ها"
+
+#: mybblastinfo.php:224
+msgid "Polls"
+msgstr "نظرسنجی"
+
+#: mybblastinfo.php:229
+msgid "Last Post"
+msgstr "آخرین ارسال ها"
+
+#: mybblastinfo.php:240
+msgid "Last User"
+msgstr "آخرین کاربران"
+
+#: mybblastinfo.php:249
+msgid "Most viewed"
+msgstr "مطالب محبوب"
+
+#: mybblastinfo.php:258
+msgid "Hot Topics"
+msgstr "موضوعات داغ"
+
+#: mybblastinfo.php:267
+msgid "Top posting users"
+msgstr "برترین ارسال کنندگان"
