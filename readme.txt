@@ -19,7 +19,7 @@ Show Mybb Last Information Like lastPosts,Lastuser,Most viewed topic And .... .
  * Show Users By Top Reputation
  * Show Top File Downloaded
  
- <a href="http://pcrticks.ir">Live Demo</a>
+ <a href="http://pctricks.ir/">Live Demo</a>
 
 == Installation ==
 
