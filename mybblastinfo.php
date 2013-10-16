@@ -3,7 +3,7 @@
  * Plugin Name: Mybb Last Inforamtion
  * Plugin URI: http://pctricks.ir/
  * Description: This Plugin Show Mybb Info In Wordpress . Like Last post,Last User,Last Thread,Top Download
- * Version: 1.0
+ * Version: 1.5
  * Author: <a href="http://pctricks.ir/">Mostafa Shiraali</a>
  * Author URI: http://pctricks.ir/
  * License: A "Slug" license name e.g. GPL2
@@ -23,6 +23,10 @@
  add_option('mli_topreputation',"","Top Reputation");
  add_option('mli_topfiles',"","Top Files");
  add_option('mli_topposter',"","Top Poster");
+ add_option('mli_lastpostchar',45,"Last Posts Title Character");
+ add_option('mli_filetitle',25,"File Title chars");
+ add_option('mli_fstat',"","Forum Statistics");
+ add_option('mli_reffer',"","Top Reffer");
  } 
  function mybblastinfo_init()
  {
@@ -39,6 +43,10 @@
  register_setting('pctriks_mli_opt','mli_topreputation');
  register_setting('pctriks_mli_opt','mli_topfiles');
  register_setting('pctriks_mli_opt','mli_topposter');
+ register_setting('pctriks_mli_opt','mli_lastpostchar');
+ register_setting('pctriks_mli_opt','mli_filetitle');
+ register_setting('pctriks_mli_opt','mli_fstat');
+ register_setting('pctriks_mli_opt','mli_reffer');
  }
  if ( ! function_exists ( 'mybblastinfo_lang_init' ) ) {
  function mybblastinfo_lang_init()
@@ -83,6 +91,22 @@ function mybblastinfo_display_options()
             <th scope="row"><label><?php _e("Items Number","mybblastinfo");?></label></th>
 			<td><span class="description"><?php _e("Insert Number of Items","mybblastinfo");?></span></td>
 			<td><input type="text" name="mli_itemnumber" value="<?php echo get_option('mli_itemnumber'); ?>" /> </td>
+        </tr>		
+		</tr>
+		 <tr valign="top">
+            <th scope="row"><label><?php _e("Post Title Characters","mybblastinfo");?></label></th>
+			<td><span class="description"><?php _e("Insert Number of Post Title Characters","mybblastinfo");?></span></td>
+			<td><input type="text" name="mli_lastpostchar" value="<?php echo get_option('mli_lastpostchar'); ?>" /> </td>
+        </tr>
+		<tr valign="top">
+            <th scope="row"><label><?php _e("File Title Characters","mybblastinfo");?></label></th>
+			<td><span class="description"><?php _e("Insert Number of File Title Characters","mybblastinfo");?></span></td>
+			<td><input type="text" name="mli_filetitle" value="<?php echo get_option('mli_filetitle'); ?>" /> </td>
+        </tr>
+		<tr valign="top">
+            <th scope="row"><label><?php _e("Forum Statistics","mybblastinfo");?></label></th>
+			<td><span class="description"><?php _e("Do You Want Show Forum Statistics?","mybblastinfo");?></span></td>
+			<td><input type="checkbox" name="mli_fstat" id="mli_fstat" <?php checked('mli_fstat', get_option('mli_fstat'));?> value='mli_fstat'/></td>
         </tr>
 		<tr valign="top">
             <th scope="row"><label><?php _e("Last Posts","mybblastinfo");?></label></th>
@@ -120,6 +144,11 @@ function mybblastinfo_display_options()
 			<td><span class="description"><?php _e("Do You Want Show Top Posters?","mybblastinfo");?></span></td>
 			<td><input type="checkbox" name="mli_topposter" id="mli_topposter" <?php checked('mli_topposter', get_option('mli_topposter'));?> value='mli_topposter'/></td>
         </tr>
+		<tr valign="top">
+            <th scope="row"><label><?php _e("Top Reffer","mybblastinfo");?></label></th>
+			<td><span class="description"><?php _e("Do You Want Show Top Reffer?","mybblastinfo");?></span></td>
+			<td><input type="checkbox" name="mli_reffer" id="mli_reffer" <?php checked('mli_reffer', get_option('mli_reffer'));?> value='mli_reffer'/></td>
+        </tr>
 	</table>
 	<p class="submit">
 	<input type="submit" name="Submit" value="Save" />
@@ -136,6 +165,8 @@ $db_pass=get_option('mli_mybb_db_password');
 $db_dbname=get_option('mli_mybb_db');
 $table_prefix=get_option('mli_mybb_tableprefix');
 $item_number=get_option('mli_itemnumber');
+$lastpost_chars_number=get_option('mli_lastpostchar');
+$file_chars_number=get_option('mli_filetitle');
 $lastpost_perm=get_option('mli_lastpost');
 $lastuser_perm=get_option('mli_lastuser');
 $mostviews_perm=get_option('mli_mostview');
@@ -143,6 +174,8 @@ $hottopic_perm=get_option('mli_hottopic');
 $toprep_perm=get_option('mli_topreputation');
 $topfiles_perm=get_option('mli_topfiles');
 $topposter_perm=get_option('mli_topposter');
+$fstat=get_option('mli_fstat');
+$reffer=get_option('mli_reffer');
 $conection=mysql_connect($hostname,$db_user,$db_pass) or die("Error Mybb Conection");
 mysql_select_db($db_dbname);
 mysql_query("SET NAMES utf8");
@@ -156,17 +189,44 @@ SELECT pid
 FROM ".$table_prefix."posts
 WHERE visible='1' ORDER BY pid DESC
 )t2 ON t1.pid = t2.pid GROUP BY tid ORDER BY pid DESC");
+$fstat_users =mysql_query("SELECT * FROM ".$table_prefix."users");
+$fstat_threads =mysql_query("SELECT * FROM ".$table_prefix."threads");
+$fstat_posts =mysql_query("SELECT * FROM ".$table_prefix."posts");
+$fstat_banned =mysql_query("SELECT * FROM ".$table_prefix."banned");
+$fstat_groups =mysql_query("SELECT * FROM ".$table_prefix."usergroups");
+$fstat_forums =mysql_query("SELECT * FROM ".$table_prefix."forums");
+$fstat_polls =mysql_query("SELECT * FROM ".$table_prefix."polls");
 $query_mostviewed =mysql_query("SELECT * FROM ".$table_prefix."threads WHERE visible='1' ORDER BY views DESC LIMIT 0,{$item_number}");
 $query_hottopics = mysql_query("SELECT * FROM ".$table_prefix."threads WHERE visible='1' ORDER BY replies DESC LIMIT 0,{$item_number}");
 $query_top_poster = mysql_query("SELECT * FROM ".$table_prefix."users ORDER BY postnum DESC LIMIT 0,{$item_number}");
 $query_top_reputation =mysql_query("SELECT * FROM ".$table_prefix."users ORDER BY reputation DESC LIMIT 0,{$item_number}");
 $query_top_file = mysql_query("SELECT * FROM ".$table_prefix."attachments ORDER BY downloads DESC LIMIT 0,{$item_number}");
 $query_users=mysql_query("SELECT * FROM  ".$table_prefix."users ORDER BY uid DESC LIMIT 0,{$item_number}");
+	$query_reffer = mysql_query("
+	SELECT u.uid,u.username,u.usergroup,u.displaygroup,count(*) as refcount 
+	FROM ".$table_prefix."users u 
+	LEFT JOIN ".$table_prefix."users r ON (r.referrer = u.uid) 
+	WHERE r.referrer = u.uid 
+	GROUP BY r.referrer DESC 
+	ORDER BY refcount DESC 
+	LIMIT 0 ,{$item_number}");	
 $mybb_info='
 <div id="mybbinfoaccordion">';
+if($fstat)
+{
+$mybb_info .='<section id="item1"><h1><a href="#">'.__("Forum Statistics","mybblastinfo").'</a></h1><p>';
+$mybb_info .="<li>".__("Members","mybblastinfo")." : ".mysql_num_rows($fstat_users)."</li>";
+$mybb_info .="<li>".__("Threads","mybblastinfo")." : ".mysql_num_rows($fstat_threads)."</li>";
+$mybb_info .="<li>".__("Posts","mybblastinfo")." : ".mysql_num_rows($fstat_posts)."</li>";
+$mybb_info .="<li>".__("Banned Users","mybblastinfo")." : ".mysql_num_rows($fstat_banned)."</li>";
+$mybb_info .="<li>".__("User Groups","mybblastinfo")." : ".mysql_num_rows($fstat_groups)."</li>";
+$mybb_info .="<li>".__("Forums","mybblastinfo")." : ".mysql_num_rows($fstat_forums)."</li>";
+$mybb_info .="<li>".__("Polls","mybblastinfo")." : ".mysql_num_rows($fstat_polls)."</li>";
+$mybb_info.='</p></section>';
+}
 if($lastpost_perm)
 {
-$mybb_info .='<section id="item1"><h1><a href="#">'.__("Last Post","mybblastinfo").'</a></h1><p>';
+$mybb_info .='<section id="item2"><h1><a href="#">'.__("Last Post","mybblastinfo").'</a></h1><p>';
 $post_count=0;
 while(($fetch=mysql_fetch_array($query_posts)) && $post_count<$item_number)
 {
@@ -177,7 +237,7 @@ $mybb_info.='</p></section>';
 }
 if($lastuser_perm)
 {
-$mybb_info.='<section id="item2"><h1><a href="#">'.__("Last User","mybblastinfo").'</a></h1><p>';
+$mybb_info.='<section id="item3"><h1><a href="#">'.__("Last User","mybblastinfo").'</a></h1><p>';
 while($fetch=mysql_fetch_array($query_users))
 {
 $mybb_info .="<li><a href=".$forum_url."/member.php?action=profile&uid=".$fetch['uid']." target=\"_blank\">".$fetch['username']."</a></li>";
@@ -186,25 +246,25 @@ $mybb_info.='</p></section>';
 }
 if($mostviews_perm)
 {
-$mybb_info.='<section id="item3"><h1><a href="#">'.__("Most viewed","mybblastinfo").'</a></h1><p>';
+$mybb_info.='<section id="item4"><h1><a href="#">'.__("Most viewed","mybblastinfo").'</a></h1><p>';
 while($fetch=mysql_fetch_array($query_mostviewed))
 {
-$mybb_info .="<li><a href=".$forum_url."/showthread.php?tid=".$fetch['tid']." target=\"_blank\">".mb_substr($fetch['subject'],0,45,'utf-8')."</a></li>";
+$mybb_info .="<li><a href=".$forum_url."/showthread.php?tid=".$fetch['tid']." target=\"_blank\">".mb_substr($fetch['subject'],0,$lastpost_chars_number,'utf-8')."</a></li>";
 }
 $mybb_info.='</p></section>';
 }
 if($hottopic_perm)
 {
-$mybb_info.='<section id="item4"><h1><a href="#">'.__("Hot Topics","mybblastinfo").'</a></h1><p>';
+$mybb_info.='<section id="item5"><h1><a href="#">'.__("Hot Topics","mybblastinfo").'</a></h1><p>';
 while($fetch=mysql_fetch_array($query_hottopics))
 {
-$mybb_info .="<li><a href=".$forum_url."/showthread.php?tid=".$fetch['tid']." target=\"_blank\">".mb_substr($fetch['subject'],0,45,'utf-8')."</a></li>";
+$mybb_info .="<li><a href=".$forum_url."/showthread.php?tid=".$fetch['tid']." target=\"_blank\">".mb_substr($fetch['subject'],0,$lastpost_chars_number,'utf-8')."</a></li>";
 }
 $mybb_info.='</p></section>';
 }
 if($topposter_perm)
 {
-$mybb_info.='<section id="item1"><h1><a href="#">'.__("Top posting users","mybblastinfo").'</a></h1><p>';
+$mybb_info.='<section id="item6"><h1><a href="#">'.__("Top posting users","mybblastinfo").'</a></h1><p>';
 while($fetch=mysql_fetch_array($query_top_poster))
 {
 $mybb_info .="<li><a href=".$forum_url."/member.php?action=profile&uid=".$fetch['uid']." target=\"_blank\">".$fetch['username']."</a></li>";
@@ -213,7 +273,7 @@ $mybb_info.='</p></section>';
 }
 if($toprep_perm)
 {
-$mybb_info.='<section id="item5"><h1><a href="#">'.__("Top Reputation","mybblastinfo").'</a></h1><p>';
+$mybb_info.='<section id="item7"><h1><a href="#">'.__("Top Reputation","mybblastinfo").'</a></h1><p>';
 while($fetch=mysql_fetch_array($query_top_reputation))
 {
 $mybb_info .="<li><a href=".$forum_url."/member.php?action=profile&uid=".$fetch['uid']." target=\"_blank\">".$fetch['username']."</a></li>";
@@ -222,10 +282,19 @@ $mybb_info.='</p></section>';
 }
 if($topfiles_perm)
 {
-$mybb_info.='<section id="item6"><h1><a href="#">'.__("Top Files","mybblastinfo").'</a></h1><p>';
+$mybb_info.='<section id="item8"><h1><a href="#">'.__("Top Files","mybblastinfo").'</a></h1><p>';
 while($fetch=mysql_fetch_array($query_top_file))
 {
-$mybb_info .="<li><a href=".$forum_url."/showthread.php?pid==".$fetch['pid']." target=\"_blank\">".mb_substr($fetch['filename'],0,25,'utf-8')."</a></li>";
+$mybb_info .="<li><a href=".$forum_url."/showthread.php?pid==".$fetch['pid']." target=\"_blank\">".mb_substr($fetch['filename'],0,$file_chars_number,'utf-8')."</a></li>";
+}
+$mybb_info.='</p></section>';
+}
+if($reffer)
+{
+$mybb_info.='<section id="item9"><h1><a href="#">'.__("Top Reffer","mybblastinfo").'</a></h1><p>';
+while($fetch=mysql_fetch_array($query_reffer))
+{
+$mybb_info .="<li><a href=".$forum_url."/member.php?action=profile&uid=".$fetch['uid']." target=\"_blank\">".$fetch['username']."</a></li>";
 }
 $mybb_info.='</p></section>';
 }
