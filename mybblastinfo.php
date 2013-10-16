@@ -3,7 +3,7 @@
  * Plugin Name: Mybb Last Inforamtion
  * Plugin URI: http://pctricks.ir/
  * Description: This Plugin Show Mybb Info In Wordpress . Like Last post,Last User,Last Thread,Top Download
- * Version: 1.5
+ * Version: 1.5.1
  * Author: <a href="http://pctricks.ir/">Mostafa Shiraali</a>
  * Author URI: http://pctricks.ir/
  * License: A "Slug" license name e.g. GPL2
@@ -27,7 +27,7 @@
  add_option('mli_filetitle',25,"File Title chars");
  add_option('mli_fstat',"","Forum Statistics");
  add_option('mli_reffer',"","Top Reffer");
- } 
+ }
  function mybblastinfo_init()
  {
  register_setting('pctriks_mli_opt','mli_mybb_host');
@@ -47,6 +47,26 @@
  register_setting('pctriks_mli_opt','mli_filetitle');
  register_setting('pctriks_mli_opt','mli_fstat');
  register_setting('pctriks_mli_opt','mli_reffer');
+ }
+  function mybblastinfo_deactivate()
+ {
+ delete_option('mli_mybb_host');
+ delete_option('mli_mybb_db');
+ delete_option('mli_mybb_db_username');
+ delete_option('mli_mybb_db_password');
+ delete_option('mli_mybb_tableprefix');
+ delete_option('mli_itemnumber');
+ delete_option('mli_lastpost');
+ delete_option('mli_lastuser');
+ delete_option('mli_mostview');
+ delete_option('mli_hottopic');
+ delete_option('mli_topreputation');
+ delete_option('mli_topfiles');
+ delete_option('mli_topposter');
+ delete_option('mli_lastpostchar');
+ delete_option('mli_filetitle');
+ delete_option('mli_fstat');
+ delete_option('mli_reffer');
  }
  if ( ! function_exists ( 'mybblastinfo_lang_init' ) ) {
  function mybblastinfo_lang_init()
@@ -344,5 +364,6 @@ add_action('admin_menu', 'mybblastinfo_menu');
 add_action('widgets_init', 'widget_pctrick_mybblastinfo_init');
 add_action( 'wp_enqueue_scripts', 'mybblastinfo_script' );
 register_activation_hook( __FILE__, 'mybblastinfo_active' );
+register_deactivation_hook( __FILE__, 'mybblastinfo_deactivate' );
 
 ?>

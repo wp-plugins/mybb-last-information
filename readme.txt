@@ -61,3 +61,5 @@ Show Mybb Last Information Like lastPosts,Lastuser,Most viewed topic And .... .
  * Show Forum Statistics
  * Last Posts Title Character Option
  * File Title Character Option
+ = 1.5.1 =
+ * Fix small problem
