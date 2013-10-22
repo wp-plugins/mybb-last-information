@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Plugin Name: Mybb Last Inforamtion
  * Plugin URI: http://pctricks.ir/
@@ -353,9 +353,9 @@ function widget_pctrick_mybblastinfo_init()
 }
 function mybblastinfo_script()
 {
-	wp_enqueue_style('mybblastinfo-css', get_option('siteurl').'/wp-content/plugins/mybblastinfo/core/mybblastinfo.css' );
+	wp_enqueue_style('mybblastinfo-css', get_option('siteurl').'/wp-content/plugins/mybb-last-information/core/mybblastinfo.css' );
 	wp_enqueue_script('jquery');
-	wp_enqueue_script('mybblastinfo-js', get_option('siteurl').'/wp-content/plugins/mybblastinfo/core/mybblastinfo.js' );
+	wp_enqueue_script('mybblastinfo-js', get_option('siteurl').'/wp-content/plugins/mybb-last-information/core/mybblastinfo.js' );
 }
 add_action('admin_init', 'mybblastinfo_init' );
 add_action('init', 'mybblastinfo_lang_init');
