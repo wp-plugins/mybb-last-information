@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: pctricks.ir
-Donate link: http://shop.pctricks.ir/payline/
+Donate link: http://community.pctricks.ir/
 Tags: mybb, mybb info,mybb last post,mybb last user
 Requires at least: 3.0.1
 Tested up to: 4.0
