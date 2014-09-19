@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Plugin Name: Mybb Last Inforamtion
  * Plugin URI: http://pctricks.ir/
