@@ -25,7 +25,7 @@ Show Mybb Last Information Like lastPosts,Lastuser,Most viewed topic And .... .
  * Nubmber Items Option
  * disable/enable Sections Option
  
- <a href="http://pctricks.ir/">Live Demo</a>
+ <a href="http://pctricks.ir/" rel="follow" >Live Demo</a>
 
 == Installation ==
 
@@ -34,7 +34,7 @@ Show Mybb Last Information Like lastPosts,Lastuser,Most viewed topic And .... .
 3. Go to widget and Drag&Drop Mybb Information widget in You theme Position.
 
 == Frequently Asked Questions ==
-
+<a href="http://pctricks.ir/community" rel="follow" >Community</a>
 
 == Screenshots ==
 
