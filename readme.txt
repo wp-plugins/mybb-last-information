@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: pctricks.ir
-Donate link: http://payment.pctricks.ir/
+Donate link: http://donate.shiraali.com/
 Tags: mybb, mybb info,mybb last post,mybb last user
 Requires at least: 3.0.1
 Tested up to: 4.1
