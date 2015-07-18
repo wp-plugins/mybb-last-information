@@ -8,14 +8,14 @@
   margin-bottom:30px;
 }
 #mybbinfoaccordion h1 {
-  line-height:1.2;
-  font-size:13px;
-  background-color:#E6E6E6;
-  margin:0;
-  padding: 10px 10px 10px 30px;
--webkit-border-radius: 9px;
--moz-border-radius: 9px;
-border-radius: 9px;
+line-height: 1.2;
+font-size: 13px;
+background-color: #E6E6E6;
+margin: 5px;
+padding: 10px 10px 10px 30px;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
 }
 
 #mybbinfoaccordion h1 a {

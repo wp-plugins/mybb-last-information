@@ -366,8 +366,8 @@ class MybbLastInfo
 			<input type="hidden" id="pctrick_mybblastinfo_title_submit" name="pctrick_mybblastinfo_title_submit" value="1" />
 			<?php
 			}
-		wp_register_sidebar_widget(20000,__("Mybb Last Information","mybblastinfo"),'mybblastinfo_widget');
-		wp_register_widget_control(20000,__("Mybb Last Information","mybblastinfo"),'mybblastinfo_widget_control');		
+		wp_register_sidebar_widget(875689,__("Mybb Last Information","mybblastinfo"),'mybblastinfo_widget');
+		wp_register_widget_control(875689,__("Mybb Last Information","mybblastinfo"),'mybblastinfo_widget_control');		
 	}
 	public static function script()
 	{
